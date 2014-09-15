@@ -254,6 +254,7 @@ class AwazzaLogRequest(object):
             response_headers = [x.split(': ') for x in curly_brace_fields[3].strip('&').split('&')]
             self.transfer_encoding = ''
             self.request_host = ''
+            self.user_agent = ''
             for header in response_headers:
                 if header[0] == 'Content-Type':
                     self.mime_type = header[1]
@@ -262,6 +263,8 @@ class AwazzaLogRequest(object):
             for header in request_headers:
                 if header[0] == 'Host':
                     self.request_host = header[1]
+                elif header[0] == 'User-Agent':
+                    self.user_agent = header[1]
             
             # General information
             self.ts = int(time.mktime(time.strptime(fields[4], '[%d/%b/%Y:%H:%M:%S]')))
