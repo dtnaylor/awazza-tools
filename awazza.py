@@ -274,6 +274,7 @@ class AwazzaLogRequest(object):
             self.path = fields[6]
             self.verb = fields[5][1:] # cut off the leading '"'
             self.http_referer = fields[8][:-1] # Cut of trailing '"'; FIXME: could have spaces?
+	    self.response_code = int(fields[9])
             self.tag = final_fields[13]
             self.machine = machine
             self.url = '%s%s' % (self.origin, self.path)
